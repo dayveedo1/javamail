@@ -26,6 +26,8 @@ public class MailController {
     @Inject
     UserRepository userRepo;
 
+    private final String MAIL_FROM = "admin@safeside.tk";
+
     @ApiOperation("To Send Email")
     @PostMapping("/sendMail")
     public ResponseEntity sendEmail(@RequestParam("userId") Long userId, @RequestParam("message") String message){
@@ -34,7 +36,7 @@ public class MailController {
         String userEmail = user.get().getEmail();
 
         Mail mail = new Mail();
-        mail.setMailFrom("cyberlink@cyber-api.tk");
+        mail.setMailFrom(MAIL_FROM);
         mail.setMailTo(userEmail);
         mail.setMailSubject("CactusTech");
         mail.setMailContent(message);
